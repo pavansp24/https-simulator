@@ -35,9 +35,11 @@ public class SimulartorVerticle extends AbstractVerticle {
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
 		super.start();
+		System.out.println("jsk path" +jksFilePath);
+		System.out.println("configuring api : "+apiName);
+
 		Router router = Router.router(vertx);
 		router.post().handler(BodyHandler.create());
-		System.out.println("configuring api : "+apiName);
 
 		router.route("/").handler(this::welcomeMessage);
 		router.route("/simulate").method(HttpMethod.POST).blockingHandler(this::captureResponse, false);
